@@ -14,4 +14,15 @@ mod Counter {
     struct Storage {
         count: u256
     }
+
+      #[external(v0)]
+    impl CounterImpl of ICounter<ContractState> {
+        fn increase(ref self: ContractState) {
+            self.count.write(self.count.read() + 1);
+        }
+        fn decrease(ref self: ContractState) {
+            assert(self.count.read() > 0, 'Count is Zero');
+            self.count.write(self.count.read() - 1);
+        }
+    }
 }
