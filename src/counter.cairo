@@ -25,4 +25,12 @@ mod Counter {
             self.count.write(self.count.read() - 1);
         }
     }
+
+     fn get_count(self: @ContractState) -> u256 {
+            self.count.read()
+        }
+
+        fn increase_by_value(ref self: ContractState, value: u256) {
+            self.count.write(self.count.read() + value);
+        }
 }
