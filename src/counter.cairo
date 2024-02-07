@@ -33,4 +33,9 @@ mod Counter {
         fn increase_by_value(ref self: ContractState, value: u256) {
             self.count.write(self.count.read() + value);
         }
-}
+
+             fn decrease_by_value(ref self: ContractState, value: u256) {
+            assert(self.count.read() > 0, 'Count is Zero');
+            self.count.write(self.count.read() - value);
+        }
+    }
