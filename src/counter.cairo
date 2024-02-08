@@ -39,3 +39,22 @@ mod Counter {
             self.count.write(self.count.read() - value);
         }
     }
+
+    #[cfg(test)]
+mod test {
+    use core::serde::Serde;
+    use super::{ICounter, Counter, ICounterDispatcher, ICounterDispatcherTrait};
+    use starknet::ContractAddress;
+    use starknet::contract_address::contract_address_const;
+    use array::ArrayTrait;
+    use snforge_std::{declare, ContractClassTrait};
+
+     // helper function
+    fn deploy_contract() -> ContractAddress {
+        let contract_class = declare('Counter');
+
+        let contract_address = contract_class.deploy(@ArrayTrait::new()).unwrap();
+        contract_address
+    }
+
+}
