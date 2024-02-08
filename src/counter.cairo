@@ -57,4 +57,21 @@ mod test {
         contract_address
     }
 
+      #[test]
+    fn test_correct_count() {
+        let contract_address = deploy_contract();
+        let dispatcher = ICounterDispatcher { contract_address };
+
+        assert(dispatcher.get_count() == 0, 'Wrong Count');
+    }
+
+    #[test]
+    fn test_increase() {
+        let contract_address = deploy_contract();
+        let dispatcher = ICounterDispatcher { contract_address };
+        let previous_count = dispatcher.get_count();
+        dispatcher.increase();
+        assert(dispatcher.get_count() == previous_count + 1, 'Increase function not working');
+    }
+
 }
