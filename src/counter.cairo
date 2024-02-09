@@ -74,4 +74,16 @@ mod test {
         assert(dispatcher.get_count() == previous_count + 1, 'Increase function not working');
     }
 
+     #[test]
+    fn test_decrease() {
+        let contract_address = deploy_contract();
+        let dispatcher = ICounterDispatcher { contract_address };
+        dispatcher.increase_by_value(40);
+        let previous_count = dispatcher.get_count();
+        dispatcher.decrease();
+        assert(dispatcher.get_count() == previous_count - 1, 'Decrease function not working');
+    }
+
+    
+
 }
