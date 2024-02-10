@@ -105,6 +105,14 @@ mod test {
         dispatcher.decrease();
     }
 
+      #[test]
+    #[should_panic(expected: ('Count is Zero',))]
+    fn test_decrease_by_value_fail() {
+        let contract_address = deploy_contract();
+        let dispatcher = ICounterDispatcher { contract_address };
+        dispatcher.decrease_by_value(2);
+    }
+
 
 
 }
