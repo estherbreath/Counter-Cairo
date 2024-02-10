@@ -97,6 +97,14 @@ mod test {
         );
     }
 
+      #[test]
+    #[should_panic(expected: ('Count is Zero',))]
+    fn test_decrease_fail() {
+        let contract_address = deploy_contract();
+        let dispatcher = ICounterDispatcher { contract_address };
+        dispatcher.decrease();
+    }
+
 
 
 }
